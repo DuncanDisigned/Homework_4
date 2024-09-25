@@ -11,6 +11,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.InputStream;
@@ -60,12 +61,13 @@ public class OtusAuthorization {
     public void loginToOtus() {
         String username = props.getProperty("username"); // Получаем имя пользователя из properties
         String password = props.getProperty("password"); // Получаем пароль из properties
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        WebElement signInButton = driver.findElement(By.xpath("//button[text()='Войти']"));
+        WebElement signInButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Войти']")));
         signInButton.click();
         logger.info("Нажимаем на кнопку 'Войти'");
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+
         WebElement email = driver.findElement(By.xpath("//*[@name='email']"));
         email.click();
         email.sendKeys(username);

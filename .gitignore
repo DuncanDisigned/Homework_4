@@ -1,0 +1,17 @@
+# Системные файлы
+*.class
+*.jar
+
+# Maven
+/target/
+
+# Intellij IDEA
+.idea
+*.iml
+out
+# Логи
+*.log
+
+
+/tmp
+*.tmp
